@@ -34,7 +34,7 @@ public class MemberDao {
     		// 연결을 끊지 않고 쓸때마다 찾아서(lookup) 꺼내서 쓸 수 있다.
     		Context initCtx = new InitialContext();
     		Context envCtx = (Context)initCtx.lookup("java:comp/env"); // lookup 메서드를 통해 context.xml 파일에 접근하여 자바환경 코드를 검색
-    		DataSource ds = (DataSource)envCtx.lookup("jdbc/pool1");  //name명 <Context>태그안의 <Resource> 환경설정의 name이 jdbc/pool1인 것을 검색
+    		DataSource ds = (DataSource)envCtx.lookup("jdbc/pool1");  // name명 <Context>태그안의 <Resource> 환경설정의 name이 jdbc/pool1인 것을 검색
     		conn = ds.getConnection();
 			
 		} catch (Exception e) {
@@ -125,13 +125,11 @@ public class MemberDao {
 				memberDto.setPw(rs.getString("PW"));
 				memberDto.setName(rs.getString("NAME"));
 				memberDto.setTel(rs.getString("TEL"));
-				memberDto.setEmail(rs.getString("EMAIL"));
+				memberDto.setEmail(rs.getString("TEL"));
 				memberDto.setField(rs.getString("FIELD"));
 				memberDto.setSkill(rs.getString("SKILL"));
 				memberDto.setMajor(rs.getString("MAJOR"));
 			}
-			
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,7 +139,7 @@ public class MemberDao {
 			if (conn != null)  try{conn.close();} catch (SQLException e) {e.printStackTrace();}
 		}
 		
-		return null;
+		return memberDto;
 		
 	}
 	

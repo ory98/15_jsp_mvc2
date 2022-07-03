@@ -21,11 +21,11 @@
 		<hr>
 		<form >
 			<h4>개인 정보</h4>
-			<label>이름 : </label> <input type="text" name="name" value="${memberDto.name }"> 
+			<label>이름 : </label> <input type="text" name="name" value="${memberDto.name }" readonly> 
 			<br>
-			<label>연락처 : </label> <input type="text" name="tel" value="${memberDto.tel }"> 
+			<label>연락처 : </label> <input type="text" name="tel" value="${memberDto.tel }" readonly> 
 			<br> 
-			<label>이메일: </label><input type="email" name="email" value=${memberDto.email }>
+			<label>이메일: </label><input type="email" name="email" value="${memberDto.email }" readonly>
 			<hr>
 			<h4>지원 분야</h4>
 			<label> <input type="radio" name="field" value="publishing">웹 퍼블리싱</label> 

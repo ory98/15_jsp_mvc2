@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
 		
 		boolean isLogin = MemberDao.getInstance().login(memberDto);
 		
-		if(isLogin == true) {
+		if (isLogin == true) {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("id", memberDto.getId());
