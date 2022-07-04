@@ -19,7 +19,7 @@
 		<h1>자바 개발자 지원서</h1>
 		<p>Java, JSP, Spring에 대한 기술적 이해와 경험이 있는 분을 찾습니다.</p>
 		<hr>
-		<form >
+		<form action = "apply" method="post"> 
 			<h4>개인 정보</h4>
 			<label>이름 : </label> <input type="text" name="name" value="${memberDto.name }" readonly> 
 			<br>

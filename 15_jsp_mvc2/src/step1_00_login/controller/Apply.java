@@ -34,6 +34,30 @@ public class Apply extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf-8");
+		
+		String field= request.getParameter("field");
+		String major = request.getParameter("major");
+		String[] temp = request.getParameterValues("skill");
+		
+		String skill = "";
+		for (int i = 0; i < temp.length; i++) {
+			skill += temp[i];
+			if (i != temp.length -1) {
+				skill += ",";
+			}
+		}
+		
+		MemberDto memberDto = new MemberDto();
+		memberDto.setField(field);
+		memberDto.setMajor(major);
+		memberDto.setSkill(skill);
+		
+		HttpSession session = request.getSession();
+		memberDto.setId((String)session.getAttribute("id"));
+		
+		MemberDao.getInstance().apply(memberDto);
+		
 		RequestDispatcher dis = request.getRequestDispatcher("step1_01_login/08_alppyAction.jsp");
 		dis.forward(request, response);
 	}

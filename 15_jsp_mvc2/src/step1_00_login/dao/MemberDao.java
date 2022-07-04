@@ -45,7 +45,7 @@ public class MemberDao {
         
     }
 	
-	// 1. 회원가입 Dao
+	// 1. 회원가입 DAO
 	public boolean joinMember(MemberDto memberDto) {
 		
 		boolean isJoin = false;
@@ -77,7 +77,7 @@ public class MemberDao {
 		return isJoin;
 	}
 	
-	// 2. 로그인 Dao
+	// 2. 로그인 DAO
 	public boolean login(MemberDto memberDto) {
 		
 		boolean isLogin = false;
@@ -107,7 +107,7 @@ public class MemberDao {
 		
 	}
 	
-	// 3. 한명의 회원 정도 조회 Dao 
+	// 3. 한명의 회원 정도 조회 DAO 
 	public MemberDto getOneMemberInfo(String id) {
 		
 		MemberDto memberDto = null;
@@ -142,7 +142,68 @@ public class MemberDao {
 		return memberDto;
 		
 	}
+	// 4. 입사지원 DAO
+	public void apply(MemberDto memberDto) {
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("UPADTE MEMBER SET FIELD = ?, SKILL = ?, MAJOR = ? WHERE ID = ?");
+			pstmt.setString(1,memberDto.getField());
+			pstmt.setString(2, memberDto.getSkill());
+			pstmt.setString(3, memberDto.getMajor());
+			pstmt.setString(4, memberDto.getId());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try{pstmt.close();} catch (SQLException e) {e.printStackTrace();}
+			if (conn != null)  try{conn.close();} catch (SQLException e) {e.printStackTrace();}
+		}
+
+	}
+	// 5.회원탈퇴 DAO
+	public void deleteMember(String id) {
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("DELETE FROM MEMBER WHERE ID =?");
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try{pstmt.close();} catch (SQLException e) {e.printStackTrace();}
+			if (conn != null)  try{conn.close();} catch (SQLException e) {e.printStackTrace();}
+		}
+	}
 	
+	// 6. 회원정보 수정 DAO
+	public void updateMember(MemberDto memberDto) {
+		
+		try {
+			
+			conn = getConnection();
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET PW = ?, NAME = ?, TEL = ?, EMAIL = ?, FIELD = ?, SKILL = ?, MAJOR = ? WHERE ID = ?");
+			pstmt.setString(1, memberDto.getPw());
+			pstmt.setString(2, memberDto.getName());
+			pstmt.setString(3, memberDto.getTel());
+			pstmt.setString(4, memberDto.getEmail());
+			pstmt.setString(5, memberDto.getField());
+			pstmt.setString(6, memberDto.getSkill());
+			pstmt.setString(7, memberDto.getMajor());
+			pstmt.setString(8, memberDto.getId());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) try{pstmt.close();} catch (SQLException e) {e.printStackTrace();}
+			if (conn != null)  try{conn.close();} catch (SQLException e) {e.printStackTrace();}
+		}
+		
+	}
 	
 	
 }
