@@ -142,6 +142,7 @@ public class MemberDao {
 		return memberDto;
 		
 	}
+	
 	// 4. 입사지원 DAO
 	public void apply(MemberDto memberDto) {
 		
@@ -162,7 +163,8 @@ public class MemberDao {
 		}
 
 	}
-	// 5.회원탈퇴 DAO
+	
+	// 5. 회원탈퇴 DAO
 	public void deleteMember(String id) {
 		
 		try {
