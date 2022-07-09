@@ -149,7 +149,7 @@ public class MemberDao {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("UPDATE MEMBER SET FIELD = ?, SKILL = ?, MAJOR = ? WHERE ID = ?");
-			pstmt.setString(1,memberDto.getField());
+			pstmt.setString(1, memberDto.getField());
 			pstmt.setString(2, memberDto.getSkill());
 			pstmt.setString(3, memberDto.getMajor());
 			pstmt.setString(4, memberDto.getId());

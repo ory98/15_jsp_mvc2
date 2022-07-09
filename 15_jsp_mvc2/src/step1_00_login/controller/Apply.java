@@ -36,7 +36,7 @@ public class Apply extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String field= request.getParameter("field");
+		String field = request.getParameter("field");
 		String major = request.getParameter("major");
 		String[] temp = request.getParameterValues("skill");
 		
